@@ -119,7 +119,7 @@ class ArtDataset():
         self.image_size = opts.image_size
 
     def __len__(self):
-        return len(self.style_paths)
+        return max(len(self.content_paths), len(self.style_paths))
 
     def __getitem__(self, item):
         content_index = random.randint(0, len(self.content_paths) - 1)
