@@ -27,7 +27,6 @@ if __name__ == '__main__':
     parser.add_argument('--sub_file', type=str, default='new')
 
     # dataset
-    #parser.add_argument('--content_data_path', type=str, default='/data/dataset/Places/data_large')
     parser.add_argument("--content_data_path", type=str, default="/data/dataset/wuxiaolei/COCO2014/train2014")
     parser.add_argument('--style_data_path', type=str, default='/data/dataset/wuxiaolei/WikiArt/train')
     parser.add_argument('--info_path', type=str, default='/data/dataset/wuxiaolei/WikiArt/train_info.csv')
@@ -46,6 +45,7 @@ if __name__ == '__main__':
     parser.add_argument('--gamma', type=float, default=0.5, help='How much to decay learning rate')
     parser.add_argument('--update_D', type=int, default=5)
     parser.add_argument('--batch_size', type=int, default=1)
+    parser.add_argument('--num_workers', type=int, default=2)
     parser.add_argument('--save_freq', type=int, default=50000)
 
     # loss weight
@@ -88,11 +88,10 @@ if __name__ == '__main__':
 
     # prepare dataset
     augmentor = img_augm.Augmentor(crop_size=[opts.image_size, opts.image_size])
-    #content_style_dataset = prepare_dataset.PlacesDataset(opts, augmentor)
     content_style_dataset = dataset.ArtDataset(opts, augmentor)
     total_images = len(content_style_dataset)
     print(f"There are total {total_images} image pairs!")
-    dataloader = data.DataLoader(content_style_dataset, batch_size=opts.batch_size, num_workers=opts.batch_size, shuffle=True)
+    dataloader = data.DataLoader(content_style_dataset, batch_size=opts.batch_size, num_workers=opts.num_workers, shuffle=True)
 
     # prepare model
     trainer = Grid(opts, gpu_num).cuda()
