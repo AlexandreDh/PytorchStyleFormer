@@ -40,7 +40,7 @@ def image_to_tensor_PIL(path, image_size, resize_pre=False):
             image = image.resize((image.size[0] // 2, image.size[1] // 2))
 
     data_transform = transform.Compose([transform.RandomResizedCrop((image_size, image_size)), transform.ToTensor(),
-                                        transform.Normalize(mean, std)])
+                                        transform.Lambda(lambda img: img / 255.), transform.Normalize(mean, std)])
     image_tensor = data_transform(image)
 
     return image_tensor
