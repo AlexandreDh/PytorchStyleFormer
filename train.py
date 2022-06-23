@@ -122,7 +122,9 @@ if __name__ == '__main__':
             if step % 1000 == 0:
                 write_images('content_style_output', display, train_writer, step)
             if step % 1000 == 0:
-                result = torchvision.utils.make_grid(denormalize_vgg_adain(display).cpu())
+                denorm = denormalize_vgg(display)
+                denorm = denorm.clamp(0., 255.)
+                result = torchvision.utils.make_grid(denorm.cpu())
                 torchvision.utils.save_image(result, os.path.join(image_directory, 'test_%08d.jpg' % (total_step + 1)))
             if step % opts.save_freq == 0:
                 trainer.save(checkpoint_directory, step)
