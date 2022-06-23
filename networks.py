@@ -289,7 +289,6 @@ class ApplyCoeffs(nn.Module):
         self.alpha = options.alpha
         self.sect = options.selection
         self.inter_sect = options.inter_selection
-        # self.sect = 'Ax+b'
 
     def forward(self, coeff, full_res_input):
         N, C, H, W = full_res_input.shape

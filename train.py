@@ -62,6 +62,7 @@ if __name__ == '__main__':
     parser.add_argument('--group_num', type=int, default=16)
     parser.add_argument('--alpha', type=float, default=0.8)
     parser.add_argument('--selection', type=str, default='Ax+b')
+    parser.add_argument('--inter_selection', type=str, default='A1x+b2')
 
     # seed
     parser.add_argument('--seed', type=int, default=123)
