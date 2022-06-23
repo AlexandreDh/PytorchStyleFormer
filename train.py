@@ -13,7 +13,7 @@ import img_augm
 #import prepare_dataset
 import dataset
 from model import Grid
-from utils import prepare_sub_folder, write_loss, write_images, denormalize_vgg_adain, put_tensor_cuda
+from utils import prepare_sub_folder, write_loss, write_images, denormalize_vgg_adain, put_tensor_cuda, denormalize_vgg
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
